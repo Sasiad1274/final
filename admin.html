@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Admin Dashboard</h1>
+    <a href="Procurement.html" class="procurement-btn">Procurement Management</a>
+  </header>
+  <main class="admin-dashboard">
+    <!-- User Management Section -->
+    <section class="user-management">
+      <h2>User Management</h2>
+      <div class="user-list">
+        <!-- Preloaded users -->
+        <div class="user-card">
+          <p><strong>Name:</strong> Betaniya Mekbib</p>
+          <p><strong>Position:</strong> Project Manager</p>
+          <p><strong>ID:</strong> UGR/9341/15</p>
+          <button class="remove-user-btn">Remove</button>
+        </div>
+        <div class="user-card">
+          <p><strong>Name:</strong> Mihret Asfaw</p>
+          <p><strong>Position:</strong> UI/UX Designer</p>
+          <p><strong>ID:</strong> UGR/0803/15</p>
+          <button class="remove-user-btn">Remove</button>
+        </div>
+        <div class="user-card">
+          <p><strong>Name:</strong> Nehmia Tewachew</p>
+          <p><strong>Position:</strong> Backend Developer</p>
+          <p><strong>ID:</strong> UGR/5357/15</p>
+          <button class="remove-user-btn">Remove</button>
+        </div>
+        <div class="user-card">
+          <p><strong>Name:</strong> Temesgen Kidane</p>
+          <p><strong>Position:</strong> Frontend Developer</p>
+          <p><strong>ID:</strong> UGR/0686/15</p>
+          <button class="remove-user-btn">Remove</button>
+        </div>
+        <div class="user-card">
+          <p><strong>Name:</strong> Surafel Admassu</p>
+          <p><strong>Position:</strong> Database Administrator</p>
+          <p><strong>ID:</strong> UGR/4292/15</p>
+          <button class="remove-user-btn">Remove</button>
+        </div>
+        <div class="user-card">
+          <p><strong>Name:</strong> Sofonias Getahun</p>
+          <p><strong>Position:</strong> Quality Assurance</p>
+          <p><strong>ID:</strong> UGR/6876/15</p>
+          <button class="remove-user-btn">Remove</button>
+        </div>
+      </div>
+      <form class="add-user-form">
+        <h3>Add New User</h3>
+        <input type="text" placeholder="Name" id="user-name" required>
+        <input type="text" placeholder="Position" id="user-position" required>
+        <input type="text" placeholder="ID Number" id="user-id" required>
+        <button type="button" id="add-user-btn">Add User</button>
+      </form>
+    </section>
+
+    <!-- Procurement Metrics Section -->
+    <section class="procurement-metrics">
+      <h2>Procurement Metrics</h2>
+      <div class="metrics-cards">
+        <div class="metrics-card" id="total-order-value">
+          <h3>Total Order Value</h3>
+          <p>ETB <span>0</span></p>
+        </div>
+        <div class="metrics-card" id="orders-delivered">
+          <h3>Orders Delivered This Month</h3>
+          <p><span>0</span></p>
+        </div>
+        <div class="metrics-card" id="inventory-levels">
+          <h3>Inventory Levels</h3>
+          <p><span>0</span> Products</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Select elements
+    const userList = document.querySelector('.user-list');
+    const addUserBtn = document.getElementById('add-user-btn');
+
+    // Add user functionality
+    addUserBtn.addEventListener('click', () => {
+      const name = document.getElementById('user-name').value;
+      const position = document.getElementById('user-position').value;
+      const id = document.getElementById('user-id').value;
+
+      if (name && position && id) {
+        // Create a new user card
+        const userCard = document.createElement('div');
+        userCard.classList.add('user-card');
+        userCard.innerHTML = `
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Position:</strong> ${position}</p>
+          <p><strong>ID:</strong> ${id}</p>
+          <button class="remove-user-btn">Remove</button>
+        `;
+
+        // Add remove functionality to the new user
+        userCard.querySelector('.remove-user-btn').addEventListener('click', () => {
+          userCard.remove();
+        });
+
+        // Append the new user card to the user list
+        userList.appendChild(userCard);
+
+        // Clear form inputs
+        document.getElementById('user-name').value = '';
+        document.getElementById('user-position').value = '';
+        document.getElementById('user-id').value = '';
+      } else {
+        alert('Please fill out all fields.');
+      }
+    });
+
+    // Remove user functionality for preloaded users
+    document.querySelectorAll('.remove-user-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.target.parentElement.remove();
+      });
+    });
+  </script>
+
+
+<style>
+/* Admin Dashboard Styles */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #101036;
+  color: white;
+}
+
+.admin-dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* User Management Section */
+.user-management {
+  margin-bottom: 40px;
+}
+
+.user-management h2 {
+  color: #000000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.add-user-form {
+  margin-top: 20px;
+}
+
+.add-user-form input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-user-form button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-user-form button:hover {
+  background-color: #555;
+}
+
+/* Analytics Section */
+.analytics {
+  margin-bottom: 40px;
+}
+
+.analytics-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.analytics-card {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-card h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Employment Data Section */
+.employment-data {
+  margin-bottom: 40px;
+}
+
+.employment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employment-table th,
+.employment-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.employment-table th {
+  background-color: #333;
+  color: white;
+}
+
+.employment-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+/* Procurement Metrics Section */
+.procurement-metrics {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.procurement-metrics h2 {
+  color: #101036;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.metrics-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.metrics-card {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.metrics-card:hover {
+  transform: translateY(-5px);
+}
+
+.metrics-card h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.metrics-card p {
+  font-size: 1.5rem;
+  color: #101036;
+  font-weight: bold;
+}
+
+
+
+</style>
+</body>
+</html>

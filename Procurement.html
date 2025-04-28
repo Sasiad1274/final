@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement Dashboard - Elegance Perfume</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the central CSS file -->
+</head>
+<body>
+    <header class="procurement-header">
+        <h1>Procurement Dashboard</h1>
+        <a href="admin.html" class="admin-btn">Admin</a>
+    </header>
+
+    <nav class="procurement-nav">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#add-procurement">Add Procurement</a>
+        <a href="#manage-suppliers">Manage Suppliers</a>
+        <a href="#inventory-tracking">Inventory Tracking</a>
+    </nav>
+
+    <section id="search-filter" class="procurement-section">
+        <h2>Search and Filter</h2>
+        <form onsubmit="handleSearch(event)" class="search-filter">
+            <div class="form-group">
+                <label for="search-supplier">Search by Supplier Name:</label>
+                <input type="text" id="search-supplier" name="search-supplier" placeholder="Enter supplier name">
+            </div>
+            <div class="form-group">
+                <label for="search-product">Search by Product Name:</label>
+                <input type="text" id="search-product" name="search-product" placeholder="Enter product name">
+            </div>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </section>
+
+    <section id="dashboard" class="procurement-section">
+        <h2>Dashboard</h2>
+        <div class="metrics-cards">
+            <div class="metrics-card" id="total-order-value">
+                <h3>Total Order Value</h3>
+                <p>ETB <span>0</span></p>
+            </div>
+            <div class="metrics-card" id="orders-delivered">
+                <h3>Orders Delivered This Month</h3>
+                <p><span>0</span></p>
+            </div>
+            <div class="metrics-card" id="inventory-levels">
+                <h3>Inventory Levels</h3>
+                <p><span>0</span> Products</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script> <!-- Link to the central JS file -->
+</body>
+</html>
